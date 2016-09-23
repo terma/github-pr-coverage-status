@@ -3,14 +3,15 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>2.4</version>
+        <version>2.11</version>
+        <relativePath />
     </parent>
 
     <artifactId>github-pr-coverage-status</artifactId>
-    <version>0.12.1-SNAPSHOT</version>
+    <version>1.0.9-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
-    <url>https://github.com/terma/jenkins-github-coverage-status</url>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/GitHub+PR+Coverage+Status+Plugin</url>
 
     <name>GitHub Pull Request Coverage Status</name>
 
@@ -29,9 +30,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/terma/github-pr-coverage-status.git</connection>
-        <developerConnection>scm:git:https://github.com/terma/github-pr-coverage-status.git</developerConnection>
-        <url>https://github.com/terma/github-pr-coverage-status</url>
+        <connection>scm:git:https://github.com/jenkinsci/github-pr-coverage-status-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/jenkinsci/github-pr-coverage-status-plugin.git</developerConnection>
+        <url>https://github.com/jenkinsci/github-pr-coverage-status-plugin</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -56,14 +57,14 @@
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -90,20 +91,20 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <preparationGoals>clean package</preparationGoals>
-                    <completionGoals>release:clean</completionGoals>
-                    <resume>false</resume>
-                    <useReleaseProfile>true</useReleaseProfile>
-                    <releaseProfiles>nexus</releaseProfiles>
-                    <goals>package</goals>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-release-plugin</artifactId>-->
+                <!--<version>2.5.1</version>-->
+                <!--<configuration>-->
+                    <!--<autoVersionSubmodules>true</autoVersionSubmodules>-->
+                    <!--<preparationGoals>clean package</preparationGoals>-->
+                    <!--<completionGoals>release:clean</completionGoals>-->
+                    <!--<resume>false</resume>-->
+                    <!--<useReleaseProfile>true</useReleaseProfile>-->
+                    <!--<releaseProfiles>nexus</releaseProfiles>-->
+                    <!--<goals>package</goals>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.jacoco</groupId>
