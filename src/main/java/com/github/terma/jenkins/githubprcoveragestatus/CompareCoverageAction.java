@@ -38,9 +38,17 @@ import java.io.PrintStream;
 public class CompareCoverageAction extends Recorder implements SimpleBuildStep {
 
     private static final long serialVersionUID = 1L;
+    
+    private Integer prId;
+
+    public CompareCoverageAction(Integer prId) {
+        this.prId = prId;
+    }
 
     @DataBoundConstructor
     public CompareCoverageAction() {
+        final Integer prId = Utils.gitPrId(build, listener);
+        this(prId);
     }
 
     @SuppressWarnings("NullableProblems")
@@ -53,9 +61,9 @@ public class CompareCoverageAction extends Recorder implements SimpleBuildStep {
         final PrintStream buildLog = listener.getLogger();
 
         final String gitUrl = Utils.getGitUrl(build, listener);
-        final Integer prId = Utils.gitPrId(build, listener);
+      
 
-        if (prId == null) {
+        if (this.prId == null) {
             throw new UnsupportedOperationException(
                     "Can't find " + Utils.GIT_PR_ID_ENV_PROPERTY + " please use " +
                             "https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin" +
@@ -74,9 +82,9 @@ public class CompareCoverageAction extends Recorder implements SimpleBuildStep {
         if (jenkinsUrl == null) jenkinsUrl = Utils.getJenkinsUrlFromBuildUrl(buildUrl);
 
         try {
-            ServiceRegistry.getPullRequestRepository().comment(gitUrl, prId, message.forComment(buildUrl, jenkinsUrl));
+            ServiceRegistry.getPullRequestRepository().comment(gitUrl, this.prId, message.forComment(buildUrl, jenkinsUrl));
         } catch (IOException ex) {
-            listener.error("Couldn't add comment to pull request #" + prId + "!", ex);
+            listener.error("Couldn't add comment to pull request #" + this.prId + "!", ex);
         }
     }
 
